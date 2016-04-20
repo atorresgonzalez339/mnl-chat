@@ -1,0 +1,9 @@
+<ion-view view-title="Dashboard">
+  <ion-content>
+    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="contact in contacts" type="item-text-wrap" href="#/tab/contact_details/{{contact.id}}">
+      <img ng-src="img/adam.jpg">
+      <h2 style="padding-top: 10px">{{contact.displayName}}</h2>
+      <i class="icon ion-chevron-right icon-accessory"></i>
+    </ion-item>
+  </ion-content>
+</ion-view>
