@@ -74,7 +74,7 @@ chat_services.factory('SecurityService', function ($q, FireManager, $firebaseObj
                 ApiService.getFirebaseToken(uid).then(function (data) {
                     var $auth = FireManager.getFireAuth();
                     $auth.$authWithCustomToken(data.token).then(function(authData) {
-                        console.log("Logged in as:", authData.uid);
+                        resolve(authData);
                     }).catch(function(error) {
                         reject();
                     });

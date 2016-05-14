@@ -1,4 +1,4 @@
-chat_controllers.controller('LoginController', function ($scope, SecurityService) {
+chat_controllers.controller('LoginController', function ($rootScope, $scope, $state, SecurityService) {
 
     $scope.loginData = {
         phone_number: '',
@@ -34,7 +34,7 @@ chat_controllers.controller('LoginController', function ($scope, SecurityService
             console.log('Valid Security Code');
             var uid = phone_number;
             SecurityService.authenticateClient(uid).then(function(data){
-                console.log(data);
+                $state.go('tab.chats');
             }, function(){
                 alert('error');
             })

@@ -12,7 +12,7 @@ angular.module('chat', [
   'chat.services'
 ])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, FireManager) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
