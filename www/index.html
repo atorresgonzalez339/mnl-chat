@@ -14,6 +14,10 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <!-- Libraries -->
+    <script src="lib/firebase/firebase.js"></script>
+    <script src="lib/angularfire/dist/angularfire.min.js"></script>
+
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
@@ -29,7 +33,10 @@
     <script src="js/Controller/ChatDetailsController.js"></script>
     <script src="js/Controller/ContactController.js"></script>
     <script src="js/Controller/ContactDetailsController.js"></script>
-    <script src="js/services.js"></script>
+    <script src="js/Services/BaseService.js"></script>
+    <script src="js/Services/FireManagerService.js"></script>
+    <script src="js/Services/SecurityService.js"></script>
+    <script src="js/Services/ApiService.js"></script>
   </head>
   <body ng-app="chat">
     <!--

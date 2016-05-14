@@ -1,4 +1,4 @@
-controller.controller('ChatController', function($scope) {
+chat_controllers.controller('ChatController', function($scope) {
 
     $scope.chats = [];
 

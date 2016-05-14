@@ -1,4 +1,4 @@
-controller.controller('ContactDetailsController', function($scope, $cordovaContacts) {
+chat_controllers.controller('ContactDetailsController', function($scope, $cordovaContacts) {
 
 
 });

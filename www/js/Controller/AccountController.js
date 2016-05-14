@@ -1,3 +1,3 @@
-controller.controller('AccountController', function($scope) {
+chat_controllers.controller('AccountController', function($scope) {
 
 });

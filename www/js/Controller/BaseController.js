@@ -1,1 +1,1 @@
-var controller = angular.module('chat.controllers', []);
+var chat_controllers = angular.module('chat.controllers', []);

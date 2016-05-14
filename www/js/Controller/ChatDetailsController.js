@@ -1,3 +1,3 @@
-controller.controller('ChatDetailsController', function($scope) {
+chat_controllers.controller('ChatDetailsController', function($scope) {
 
 });
