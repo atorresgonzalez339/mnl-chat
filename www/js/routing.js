@@ -79,12 +79,13 @@ angular.module('chat').config(function ($stateProvider, $urlRouterProvider) {
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/chats');
+    $urlRouterProvider.otherwise('/login');
 
-}).run(function($state, FireManager){
+}).run(function($rootScope, $state, FireManager){
     FireManager.getFireAuth().$onAuth(function(authData) {
         if (authData) {
             console.log("Logged in as:", authData.uid);
+            $state.go('tab.chats');
         } else {
             console.log("Logged out");
             $state.go('login');
