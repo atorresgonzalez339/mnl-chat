@@ -1,4 +1,4 @@
-chat_controllers.controller('ContactController', function($scope, $cordovaContacts) {
+chat_controllers.controller('ContactController', function($scope, $cordovaContacts, ContactService) {
 
     $scope.contacts = [];
 
@@ -9,13 +9,14 @@ chat_controllers.controller('ContactController', function($scope, $cordovaContac
     //};
 
     $scope.getAllContacts = function() {
-        for(var i = 0; i < 4; i++){
-            $scope.contacts.push({
-                id: i,
-                displayName : 'Angel Torres'
-            });
-        }
-    }
+        ContactService.getContactList().then(function(data){
+            $scope.contacts = data;
+        });
+    };
+
+    $scope.openConversation = function(){
+        console.log('aki');
+    };
 
     $scope.getAllContacts();
 
