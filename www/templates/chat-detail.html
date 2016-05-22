@@ -6,6 +6,19 @@
 -->
 <ion-view view-title="{{userId}}">
   <ion-content class="padding">
-      <input type="text" ng-model="data.message">
+      <div class="bar bar-header item-input-inset">
+          <label class="item-input-wrapper">
+              <input type="text" ng-model="data.message">
+          </label>
+          <button class="button button-clear" ng-click="sendMessage()">
+              Send
+          </button>
+      </div>
+      <div class="list">
+          <div class="item" ng-repeat="msg in data.messages">
+              <h2>{{msg.userId}}</h2>
+              <p>{{msg.message}}</p>
+          </div>
+      </div>
   </ion-content>
 </ion-view>

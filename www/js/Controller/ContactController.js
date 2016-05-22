@@ -1,4 +1,5 @@
-chat_controllers.controller('ContactController', function($scope, $cordovaContacts, ContactService) {
+chat_controllers.controller('ContactController', function($scope, $state, $cordovaContacts,
+                                                          ContactService, ChatService) {
 
     $scope.contacts = [];
 
@@ -14,8 +15,19 @@ chat_controllers.controller('ContactController', function($scope, $cordovaContac
         });
     };
 
-    $scope.openConversation = function(){
-        console.log('aki');
+    $scope.openConversation = function(contact){
+        ChatService.hasConversationOpen(contact.uid).then(function(data){
+            if(data){
+                $state.go('tab.chat-detail', {
+                    chatId: data.id
+                });
+            }
+            else{
+                ChatService.createConversation(contact.uid).then(function(){
+                    console.log('Conversation started');
+                });
+            }
+        })
     };
 
     $scope.getAllContacts();

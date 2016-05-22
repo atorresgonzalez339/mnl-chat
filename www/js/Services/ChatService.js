@@ -1,4 +1,4 @@
-chat_services.factory('ChatService', function ($q, FireManager) {
+chat_services.factory('ChatService', function ($q, FireManager, $firebaseArray) {
 
     var CHAT_ROOT_PATH = FireManager.getRef().child('chat');
 
@@ -15,12 +15,17 @@ chat_services.factory('ChatService', function ($q, FireManager) {
     });
 
     FIRE_CHAT.on('room-invite', function (data) {
-        console.log('New Conversation Invite Recibed');
+        console.log('New Conversation Invite Received');
         console.log(data);
         FIRE_CHAT.acceptInvite(data.id, function(){
             console.log('Invitation Accepted');
             //Do anything
         })
+    });
+
+    FIRE_CHAT.on('message-add', function (data) {
+        console.log('New Message Received');
+        console.log(data);
     });
 
     return {
@@ -70,6 +75,42 @@ chat_services.factory('ChatService', function ($q, FireManager) {
                 FIRE_CHAT.getRoom(roomId, function(room){
                     var authorizedIds = Object.keys(room.authorizedUsers).exclude(distinct_id);
                     resolve(authorizedIds[0]);
+                });
+            });
+        },
+        sendMessage: function(roomId, message, messageType){
+            return $q(function (resolve, reject) {
+                if (!messageType) {
+                    messageType = 'default';
+                }
+                FIRE_CHAT.sendMessage(roomId, message, messageType, function () {
+                    resolve();
+                })
+            });
+        },
+        getMessagesObj: function(roomId){
+            var MESSAGES_PATH = FireManager.getRef().child('chat').child('room-messages').child(roomId);
+            var messages = $firebaseArray(MESSAGES_PATH);
+
+            return $q(function (resolve, reject) {
+                messages.$loaded(function (data) {
+                    resolve(data);
+                });
+            });
+        },
+        setTyping: function(roomId, user_id){
+
+            var TYPING_PATH = FireManager.getRef().child('chat')
+                                                    .child('room-metadata')
+                                                    .child(roomId)
+                                                    .child('typing')
+                                                    .child('user_id');
+
+            var typingObj = $firebaseObject(TYPING_PATH);
+
+            return $q(function (resolve, reject) {
+                messages.$loaded(function (data) {
+                    resolve(data);
                 });
             });
         }
