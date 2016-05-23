@@ -8,12 +8,15 @@
   <ion-content class="padding">
       <div class="bar bar-header item-input-inset">
           <label class="item-input-wrapper">
-              <input type="text" ng-model="data.message">
+              <input type="text" ng-model="data.message" ng-keypress="onTyping()">
           </label>
-          <button class="button button-clear" ng-click="sendMessage()">
+          <button class="button button-clear" ng-click="setTyping()">
               Send
           </button>
       </div>
+      <labe ng-show="(data.contactTyping[data.contactId])">
+          {{ data.contactId }} is typing
+      </labe>
       <div class="list">
           <div class="item" ng-repeat="msg in data.messages">
               <h2>{{msg.userId}}</h2>
