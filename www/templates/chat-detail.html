@@ -4,7 +4,7 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{userId}}">
+<ion-view view-title="{{data.contactName}}">
   <ion-content class="padding">
       <div class="bar bar-header item-input-inset">
           <label class="item-input-wrapper">
@@ -15,7 +15,7 @@
           </button>
       </div>
       <labe ng-show="(data.contactTyping[data.contactId])">
-          {{ data.contactId }} is typing
+          {{ data.contactName }} is typing
       </labe>
       <div class="list">
           <div class="item" ng-repeat="msg in data.messages">

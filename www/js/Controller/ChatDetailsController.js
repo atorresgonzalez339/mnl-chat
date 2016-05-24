@@ -1,10 +1,11 @@
 chat_controllers.controller('ChatDetailsController', function($scope, $stateParams, $timeout,
-                                                              ChatService) {
+                                                              ChatService, ContactService) {
 
     $scope.data = {
         message: '',
         chatId: null,
         contactId: null,
+        contactName: null,
         typing: false,
         contactTyping: false
     };
@@ -17,8 +18,12 @@ chat_controllers.controller('ChatDetailsController', function($scope, $statePara
             $scope.data.contactTyping = data;
         });
 
-        ChatService.getConversationUserId($scope.data.chatId).then(function(data){
-            $scope.data.contactId = data;
+        ChatService.getConversationUserId($scope.data.chatId).then(function(contactId){
+            $scope.data.contactId = contactId;
+            //Get Contact Information
+            ContactService.getContact(contactId).then(function(contact){
+                $scope.data.contactName = contact.name ? contact.name : contactId;
+            });
         });
 
         ChatService.getMessagesObj($scope.data.chatId).then(function(data){

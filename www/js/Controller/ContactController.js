@@ -18,7 +18,7 @@ chat_controllers.controller('ContactController', function($scope, $state, $cordo
     $scope.openConversation = function(contact){
         ChatService.hasConversationOpen(contact.uid).then(function(data){
             if(data){
-                $state.go('tab.chat-detail', {
+                $state.go('chat-detail', {
                     chatId: data.id
                 });
             }

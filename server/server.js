@@ -20,8 +20,7 @@ app.use(bodyParser.json());
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8100');
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8101');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Pass to next layer of middleware
     next();

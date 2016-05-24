@@ -58,16 +58,12 @@ angular.module('chat').config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('tab.chat-detail', {
+        .state('chat-detail', {
             url: '/chats/:chatId',
-            views: {
-                'tab-chats': {
-                    templateUrl: 'templates/chat-detail.html',
-                    controller: 'ChatDetailsController'
-                }
-            }
+            templateUrl: 'templates/chat-detail.html',
+            controller: 'ChatDetailsController',
+            resolve: ResolveAuth
         })
-
         .state('tab.account', {
             url: '/account',
             views: {
@@ -76,6 +72,12 @@ angular.module('chat').config(function ($stateProvider, $urlRouterProvider) {
                     controller: 'AccountController'
                 }
             }
+        })
+        .state('profile', {
+            url: '/profile',
+            templateUrl: 'templates/profile.html',
+            controller: 'ProfileController',
+            resolve: ResolveAuth
         });
 
     // if none of the above states are matched, use this as the fallback
